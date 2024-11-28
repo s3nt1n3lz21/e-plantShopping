@@ -253,7 +253,7 @@ const handlePlantsClick = (e) => {
   };
 
   const handleAddToCart = (product) => {
-    if (product.name in addedToCart) {
+    if (addedToCart[product.name]) {
         return
     } else {
         dispatch(addItem(product));
@@ -296,7 +296,7 @@ const handlePlantsClick = (e) => {
                         <div className="product-description">{plant.description}</div>
                         <div className="product-cost">{plant.cost}</div>
                         {/*Similarly like the above plant.name show other details like description and cost*/}
-                        <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                        <button disabled={addedToCart[plant.name]} className={`product-button ${addedToCart[plant.name] ? "added-to-cart" : ""}`} onClick={() => handleAddToCart(plant)}>{addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}</button>
                     </div>
                     ))}
                 </div>
